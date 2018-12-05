@@ -2,6 +2,7 @@ properties([pipelineTriggers([githubPush()])])
 
 node('linux') {
     stage('Test') {
-        sh 'ant -buildfile test.xml'
+        sh 'ant -f test.xml -v'
+        junit 'reports/*.xml'
     }
 }
